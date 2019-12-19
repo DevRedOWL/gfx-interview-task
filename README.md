@@ -85,3 +85,22 @@ class Game {
 let game = new Game(); // Чтобы объект был виден только внутри блока, рекомендуется юзать let вместо var
 game.restart();
 ```
+
+## Задание 5
+```
+// Ну как то так
+function load(url, callback) {
+  // Так понял тут что то типа имитации задержки? Окей.
+	if(Math.random() > 0.5) 
+    setTimeout(callback(url), 100); // После сотни была точка с запятой а в колбеке не хватало скобок
+	else callback(url);
+}
+
+var urls = []; // Немножечко оптимизируем заполнение
+for(var i = 0; i < 4; i++) urls.push("http://www.w"+i+".org")
+
+for(var i = 0; i < urls.length; i++) {
+	load(urls[i], (data) => { console.log(data + ' loaded'); }); // Для отладки выведем урл
+	if(i == urls.length-1) console.log('Finaly loaded!'); // Эта строчка должна была быть не вложенной в колбек	
+}
+```
