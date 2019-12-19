@@ -38,6 +38,7 @@ for(var i = 0; i < a.length; i++) // Исправляем опечатку
 
 ## Задание 3
 ```js
+// Решение с пояснениями
 class A {
   	// Для начала будем использовать инкапсуляцию и отделим поле от свойства 
 	constructor(x = 0, y = 0, z = 0) {
@@ -46,10 +47,10 @@ class A {
 		this._z = z;
 	}
   
-  // Быть там может что угодно, а возвращает пусть числа
-  get x() { return isNaN(this._x) ? 0 : this._x; };
-  get y() { return isNaN(this._y) ? 0 : this._y; };
-  get z() { return isNaN(this._z) ? 0 : this._z; };  
+  	// Быть там может что угодно, а возвращает пусть числа
+  	get x() { return isNaN(this._x) ? 0 : this._x; };
+  	get y() { return isNaN(this._y) ? 0 : this._y; };
+  	get z() { return isNaN(this._z) ? 0 : this._z; };  
 }
 
 class B extends A {
@@ -58,8 +59,8 @@ class B extends A {
 		this._w = w;
 	}	
 
-  // По той же причине, что и в родительском классе, создаем геттер
-  get w() { return isNaN(this._w) ? 0 : this._w; };
+  	// По той же причине, что и в родительском классе, создаем геттер
+  	get w() { return isNaN(this._w) ? 0 : this._w; };
 }
 
 // Отлад очка
