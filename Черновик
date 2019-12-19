@@ -1,0 +1,42 @@
+class Rectangle{ 
+  // Конструктор
+  constructor(canvas,x,y,w,h,c,text){
+    this.ctx = document.getElementById(canvas).getContext('2d'); // Контекст
+    this.x = x; this.y = y; this.width = w; this.height = h; // Размеры
+    this.text = text;
+    this.maincolor = '#'+c; this.textcolor = '#'+this.invertHex(c); // Цвета
+    // Идем рисовать квадрат
+    this.drawRect(); 
+  }  
+  
+  // Инвертер цвета
+  invertHex(hex) { return (Number(`0x1${hex}`) ^ 0xFFFFFF).toString(16).substr(1).toUpperCase() }
+  
+  // Рисовалка прямоугольника
+  drawRect()
+  {
+    // Рисуем прямоугольник
+    this.ctx.fillStyle = this.maincolor; // Ставим цвет прямоугольника
+    this.ctx.fillRect(this.x, this.y, this.width, this.height);
+    // Рисуем текст
+    let fontsize = this.height/5; // Считаем размер шрифта
+    this.ctx.fillStyle = this.textcolor; // Ставим цвет шрифта
+    this.ctx.font = 'bold ' + fontsize + 'px Lilita One';
+    
+    // Выравниваем текст посередине
+    this.ctx.fillText(
+      this.text, 
+      this.x + this.width/3 + ( this.height/3 < this.width ? fontsize/2 : 0), 
+      this.y + this.height/2 + fontsize/3,
+      this.width/3
+    );   
+  }
+}
+
+let rect1 = new Rectangle('myCanvas', 25, 25, 100, 400, "ff0000", '1');
+let rect2 = new Rectangle('myCanvas', 175, 25, 100, 100, "00fa00", '2');
+let rect3 = new Rectangle('myCanvas', 325, 25, 300, 100, "fffdd0", '3');
+let rect4 = new Rectangle('myCanvas', 175, 175, 200, 200, "ff00ff", '4');
+let rect5 = new Rectangle('myCanvas', 400, 175, 200, 100, "ffffff", '5');
+
+
