@@ -44,7 +44,10 @@ let rects = [
   new Rectangle('myCanvas', 175, 25, 100, 100, "#6200c4", '2'),
   new Rectangle('myCanvas', 325, 25, 300, 50, "#9327ff", '3'),
   new Rectangle('myCanvas', 175, 175, 200, 200, "#3b0076", '4'),
-  new Rectangle('myCanvas', 400, 175, 200, 100, "#b062ff", '5')
+  new Rectangle('myCanvas', 400, 175, 200, 100, "#b062ff", '5'),
+  new Rectangle('myCanvas', 375, 475,120, 33, "#310062", '6'),
+  new Rectangle('myCanvas', 275, 435, 89, 50, "#6b00d8", '7'),
+  new Rectangle('myCanvas', 175, 405, 50, 50, "#ce9dff", '8')
 ];
 
 // Добавляем событие
@@ -52,28 +55,41 @@ let elem = document.getElementById('myCanvas');
 let lastindex = 'none', lastcolor = '';
 elem.addEventListener('mousemove', function (e) 
 { 
-  document.getElementById('Console').innerHTML = lastindex;
-  // Если квадрат попадает
   for(var key in rects){   
-    if(rects[key].IsIntersect(e)){
-      if(lastindex != key){
-        /*
-        if(!isNan(lastindex)){
-          rects[lastindex] = new Rectangle('myCanvas', rects[lastindex].x, rects[lastindex].y, rects[lastindex].width, rects[lastindex].height, lastcolor, rects[lastindex].text);}   */      
-        document.getElementById('Console').innerHTML = 'ебать ебать';
+    if(rects[key].IsIntersect(e)){       
+      if(lastindex != key){   
         // Запоминаем конфигурацию
         lastindex = key; lastcolor = rects[key].color;
-        document.getElementById('Console').innerHTML = key + ' ' + lastindex + ' '+ rects[key].text;
-        // Создаем новый квадрат
-        rects[key] = new Rectangle('myCanvas', rects[key].x+5, rects[key].y+5, rects[key].width, rects[key].height, "#ffffff", rects[key].text);     
+        // Создаем новый квадрат   
+        rects[key] = new Rectangle('myCanvas', rects[key].x, rects[key].y, rects[key].width, rects[key].height, "#ff00ae", rects[key].text); 
+        break;
       }
-    }    
+    }   
     else{
-      if(!isNaN(lastindex)){
-        //ctx.clearRect(45,45,60,60);
-        rects[lastindex] = new Rectangle('myCanvas', rects[lastindex].x-5, rects[lastindex].y-5, rects[lastindex].width, rects[lastindex].height, lastcolor, rects[lastindex].text); 
-      lastindex = 'none';
-     }
+      if(!isNaN(lastindex)){    
+        rects[lastindex] = new Rectangle('myCanvas', rects[lastindex].x, rects[lastindex].y, rects[lastindex].width, rects[lastindex].height, lastcolor, rects[lastindex].text); 
+        lastindex = "none";
+      }
+    }
+  }
+});
+
+elem.addEventListener('click', function (e) 
+{
+  for(var key in rects){   
+    if(rects[key].IsIntersect(e)){   
+        let d = key;
+        document.getElementById('Console').innerHTML = 'Кликнута кнопка '+key; 
+        for(let i = 0; i < 50; i++){ 
+          setTimeout(()=>{
+            rects[d] = new Rectangle('myCanvas', rects[d].x-1, rects[d].y-1, rects[d].width+2, rects[d].height+2, rects[d].color, rects[d].text);
+          }, 1); 
+      } 
+      for(let i = 0; i < 50; i++){ 
+          setTimeout(()=>{
+            rects[d] = new Rectangle('myCanvas', rects[d].x+1, rects[d].y+1, rects[d].width-2, rects[d].height-2, rects[d].color, rects[d].text);
+          }, 1); 
+      } 
     }
   }
 });
