@@ -1,4 +1,5 @@
 # gfx-interview-task
+Ссылка на штуковину с прямоугольниками (пока не готово): https://codepen.io/TorTik59/pen/vYExxvO
 
 ## Задание 0
 ```js
